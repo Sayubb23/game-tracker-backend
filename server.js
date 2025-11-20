@@ -2,12 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const juegosRoutes = require('./routes/juegos');
+const resenasRoutes = require('./routes/resenas'); 
 
 const app = express();
 const PUERTO = 4000;
 
 app.use(cors()); 
 app.use(express.json());
+app.use('/api/juegos', juegosRoutes);
+app.use('/api/resenas', resenasRoutes);
 
 // Conexion a MONGODB
 const URI_MONGO = "mongodb+srv://jovenescreativos:AngjYhQeY0KpTLuR@proyecto-final-jc.yhgniab.mongodb.net/SantiagoAyubb?retryWrites=true&w=majority"
