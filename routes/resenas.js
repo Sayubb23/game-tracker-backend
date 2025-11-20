@@ -26,4 +26,28 @@ router.get('/', async (req, res) => {
     }
 });
 
+// 3. DELETE: Eliminar reseña
+router.delete('/:id', async (req, res) => {
+    try {
+        await Resena.findByIdAndDelete(req.params.id);
+        res.json({ mensaje: 'Reseña eliminada' });
+    } catch (error) {
+        res.status(500).json({ mensaje: 'Error al eliminar reseña' });
+    }
+    });
+
+    // 4. PUT: Editar reseña
+    router.put('/:id', async (req, res) => {
+    try {
+        const resenaEditada = await Resena.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+        );
+        res.json(resenaEditada);
+    } catch (error) {
+        res.status(500).json({ mensaje: 'Error al editar reseña' });
+    }
+    });
+
 module.exports = router;
